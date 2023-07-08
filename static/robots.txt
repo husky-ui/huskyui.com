@@ -1,0 +1,33 @@
+
+
+#####
+## blocked User Agents
+#####
+
+User-agent: ia_archiver
+Disallow: /
+
+#####
+## blocked URLs
+#####
+
+User-agent: *
+
+Disallow: /.astro/
+Disallow: /favicon.png
+Disallow: /status.json
+Disallow: /.well-known/
+
+#####
+## allowed User Agents
+#####
+
+User-Agent: *
+Allow: /robots.txt$
+
+
+#####
+## Sitemaps
+#####
+
+Sitemap: https://huskyui.com/sitemap.xml

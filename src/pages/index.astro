@@ -1,0 +1,80 @@
+---
+import DefaultLayout from "@app/layout/Default.astro";
+import Card from "@app/component/Card.astro";
+import AppConfig, { SocialLinks, SocialUsernames } from "@app/config";
+---
+
+<DefaultLayout pageTitle={AppConfig.defaults.desc}>
+  <main>
+    <div class="header">
+      <img width="200px" height="auto" src="/favicon.png" alt="logo">
+      <h1>Welcome to <span class="text-gradient">HuskyUI</span></h1>
+      <div class="">{ AppConfig.defaults.desc }</div>
+    </div>
+    <p class="note">
+      <strong>Note:</strong> This project is currently under active development, will be made public soon on <a target="_blank" href={SocialLinks.github}>GitHub</a>
+    </p>
+    <ul role="list" class="link-card-grid">
+      <Card href={ "" + SocialLinks.github } title="Project Home" body="Explore Source code and interact with huskyui community on GitHub" />
+      <Card href={ "https://docs." + AppConfig.site.hostname } title="Documentation" body="Get Started. Learn how HuskyUI works and explore the official API docs." />
+      <Card href={ "" + SocialLinks.mastadon } title="Project Updates" body={ "Follow @" + SocialUsernames.mastadon.username + "@" + SocialUsernames.mastadon.host + " for project updates" } />
+    </ul>
+  </main>
+</DefaultLayout>
+
+<style lang="sass">
+  main
+    margin: auto
+    padding: 1.5rem
+    max-width: var(--container-max)
+
+  .header
+    text-align: center
+    margin-bottom: 3rem
+
+    img
+      max-width: 180px
+
+    h1
+      font-size: 3rem
+      margin: 0
+      margin-bottom: 1rem
+      // font-weight: 800
+
+      .text-gradient
+        font-size: 1.3em
+        font-family: 'Leckerli One', cursive
+
+  .text-gradient
+    background-image: var(--accent-gradient)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+    background-size: 400%
+    background-position: 0%
+
+  .note
+    line-height: 1.6
+    margin: 1rem 0
+    border: 1px solid rgba(var(--accent), 25%)
+    background-color: white
+    padding: 1rem
+    border-radius: 0.4rem
+    color: rgb(var(--accent))
+
+  .instructions code
+    font-size: 0.875em
+    font-weight: bold
+    background: rgba(var(--accent), 12%)
+    color: rgb(var(--accent))
+    border-radius: 4px
+    padding: 0.3em 0.45em
+
+  .instructions strong
+    color: rgb(var(--accent))
+
+  .link-card-grid
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr))
+    gap: 1rem
+    padding: 0
+</style>

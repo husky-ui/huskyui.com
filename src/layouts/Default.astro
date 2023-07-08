@@ -1,0 +1,87 @@
+---
+import Footer from "@app/component/Footer.astro";
+import HeadSEO from "@app/component/SEO.astro";
+
+
+import { AppConfig } from "@app/config";
+import { getFullURL } from "@app/util/url";
+
+import "@app/style/global.sass"
+
+export interface Props {
+  pageTitle: string;
+  overrideTitle?: boolean;
+
+  noIndex?: boolean;
+
+  seoDesc?: string;
+  seoImage?: {
+    url?: string;
+    alt?: string;
+  };
+
+  lang?: string;
+}
+
+const { 
+  pageTitle,
+  overrideTitle = false,
+  
+  seoDesc = AppConfig.defaults.desc,
+  seoImage = {
+    url: AppConfig.defaults.seoImage,
+    alt: AppConfig.defaults.seoImageAlt,
+  },
+
+  lang = AppConfig.defaults.lang,
+
+  noIndex = false,
+} = Astro.props;
+
+
+const documentTitle = overrideTitle ? pageTitle : 
+                      (pageTitle ? pageTitle + " " + AppConfig.titleSeperator + " " + AppConfig.name  : AppConfig.name);
+
+// CurrentURL
+const currentURL = getFullURL(Astro.url.pathname, true).toString();
+
+
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <!-- # website source: https://github.com/husky-ui -->
+  <!-- # © 2023 HuskyUI. All rights reserved. -->
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description">
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+		<title>{documentTitle}</title>
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- for robots -->
+    <meta name="robots" content="noimageindex" />
+    <meta name="robots" content="nositelinkssearchbox" />
+    <meta name="robots" content="nosnippet" />
+    <meta name="robots" content="noarchive" />
+    {noIndex ? <meta name="robots" content="noindex, nofollow" /> : ""}
+
+    <!-- SEO -->
+    <HeadSEO currentURL={currentURL} documentTitle={documentTitle} lang={lang} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&family=Poppins&display=swap" rel="stylesheet">
+	</head>
+
+  <!-- Content -->
+	<body class="disableSelector">
+
+
+		<slot />
+
+    <Footer />
+	</body>
+
+</html>

@@ -1,0 +1,50 @@
+
+:root
+  // --accent: 124, 58, 237
+  // --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%)
+
+  --accent: 0, 54, 113
+  --accent-gradient: linear-gradient(45deg, #003671, #0092f6 30%, white 60%)
+  --font-family: 'Poppins', system-ui, sans-serif
+  --container-max: 70ch
+
+html
+  font-family: var(--font-family), sans-serif
+  background-color: #00367110
+  color: hsl(0, 0%, 20%)
+
+code
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace
+	
+
+a
+  color: inherit
+  text-decoration-style: dotted
+  // text-decoration: none
+
+  &:is(:hover, :focus)
+    color: inherit
+
+
+.hideCursor, .disableSelector, img
+  
+  // iOS Safari
+  -webkit-touch-callout: none
+  
+  // Chrome/Safari/Opera
+  -webkit-user-select: none
+  
+  // Konqueror
+  -khtml-user-select: none
+  
+  // Firefox
+  -moz-user-select: none
+  
+  // Internet Explorer/Edge
+  -ms-user-select: none
+  
+  // Non-prefixed version [default]
+  user-select: none
+
+.hideCursor
+  cursor: default

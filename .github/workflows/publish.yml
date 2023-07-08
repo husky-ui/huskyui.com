@@ -1,0 +1,59 @@
+# Build and Push site code to GitHub Pages
+name: "Build and Push site"
+
+on:
+  # auto
+  push:
+    branches:
+      - "main"
+    paths:
+      - "./src/**/*"
+      - "./static/**/*"
+      - "astro.config.mjs"
+      - "tsconfig.json"
+      - "package.json"
+      - "CNAME"
+
+  # manual trigger
+  workflow_dispatch:
+    
+
+jobs:
+  astro: 
+    name: "astro: build & push"
+    if: ${{ github.repository == 'husky-ui/huskyui.com' }}
+
+    runs-on: ubuntu-latest
+    steps:
+    
+      # Pull Source Code
+      - name: ✅ Checkout Source
+        uses: actions/checkout@v3
+
+      # Use nodejs
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+
+      # Install packages
+      - run: npm install
+
+      # Build
+      - name: 🔨 Build Astro Site
+        run: |
+          npm run build
+
+      - name: 🔨 Setup files in dist
+        run: |
+          touch dist/.nojekyll
+          if [ -f "CNAME" ]; then cp CNAME dist/CNAME; fi
+
+      # Deploy
+      - name: 🚀 Push to gh-pages
+        uses: casperdcl/push-dir@v1
+        with:
+          message: update site
+          branch: gh-pages
+          dir: dist
+          nojekyll: true
+          history: false

@@ -1,0 +1,40 @@
+{
+  // https://github.com/withastro/astro/tree/main/packages/astro/tsconfigs  [base, strict, strictest]
+  "extends": "astro/tsconfigs/strict",
+
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@app/style/*": [
+        "src/styles/*"
+      ],
+      "@app/asset/*": [
+        "src/assets/*"
+      ],
+      "@app/layout/*": [
+        "src/layouts/*"
+      ],
+      "@app/util/*": [
+        "src/utils/*"
+      ],
+      "@app/config": [
+        "src/config.ts"
+      ],
+      "@app/component/*": [
+        "src/components/*"
+      ],
+    }
+  },
+  "exclude": [
+    ".git",
+    ".github",
+    "node_modules",
+    ".*/*",
+    "_",
+    "scripts",
+    "examples",
+    "dist",
+    "docs",
+    "static"
+  ]
+}

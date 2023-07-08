@@ -1,0 +1,21 @@
+{
+  "name": "huskyui.com",
+  "description": "huskyui.com website",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^2.8.0"
+  },
+  "devDependencies": {
+    "astro-compress": "^1.1.49",
+    "sass": "^1.63.6"
+  }
+}

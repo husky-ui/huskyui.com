@@ -1,0 +1,114 @@
+---
+
+import { AppConfig, SocialUsernames, SocialLinks } from "@app/config";
+import { getFullURL } from "@app/util/url";
+
+export interface Props {
+  documentTitle: string;
+  currentURL: string;
+  lang?: string;
+
+  overrideTitle?: boolean;
+
+  noIndex?: boolean;
+
+  seoDesc?: string;
+  seoImage?: {
+    url?: string;
+    alt?: string;
+  };
+}
+
+const { 
+  documentTitle,
+  currentURL,
+  overrideTitle = false,
+  
+  seoDesc = AppConfig.defaults.desc,
+  seoImage = {
+    url: AppConfig.defaults.seoImage,
+    alt: AppConfig.defaults.seoImageAlt,
+  },
+
+  lang = AppConfig.defaults.lang,
+  
+  noIndex = false,
+} = Astro.props;
+
+const webpageJSONld = `{
+  "@context": "https://schema.org",
+  "@id": "${currentURL}#webpage",
+  "@type": "WebPage",
+  "url": "${currentURL}",
+  "name": "${documentTitle}"
+}`;
+
+const websiteJSONld = `{
+  "@context": "https://schema.org",
+  "@id": "${getFullURL("/", true)}#website",
+  "@type": "WebSite",
+  "url": "${getFullURL("/", true)}",
+  "name": "${ AppConfig.defaults.title + ' - ' + AppConfig.defaults.desc}"
+}`;
+
+const projectSocialLinks: any = Object.values(SocialLinks).map(link => "\"" + link + "\"");
+const projectJSONld = `{
+  "@context": "https://schema.org",
+  "@id": "${getFullURL("/", true)}#organization",
+  "@type": "Organization",
+  "name": "${AppConfig.defaults.title}",
+  "url": "${getFullURL("/", true)}", 
+  "logo": "${getFullURL("/favicon.png")}",
+  "sameAs": [
+    ${projectSocialLinks}
+  ],
+  "description": "${AppConfig.defaults.desc}",
+  "parentOrganization": {
+    "@type": "Organization",
+    "url": "Acknology Co.",
+    "name": "https://acknology.co"
+  }
+}`
+
+---
+
+<>
+  <link rel="canonical" href={currentURL} />
+
+  <!-- default -->
+  <meta name="title" content={ documentTitle }>
+  <meta name="description" content={ seoDesc }>
+  <meta name="url" content={ currentURL }>
+
+  <!-- OpenGraph -->
+  <meta property="og:type" content="website" />
+  <meta name="og:title" content={ documentTitle }>
+  <meta name="og:description" content={ seoDesc }>
+  <meta name="og:image" content={ seoImage?.url }>
+  <meta name="og:image:alt" content={ seoImage?.alt }>
+  <meta name="og:url" content={ currentURL }>
+  <meta name="og:site_name" content={ AppConfig.defaults.title }>
+  <meta name="og:locale" content={ lang }>
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content={ '@' + SocialUsernames.twitter }>
+  <meta name="twitter:site" content={ '@' + SocialUsernames.twitter }>
+  <meta name="twitter:title" content={ documentTitle }>
+  <meta name="twitter:description" content={ seoDesc }>
+  <meta name="twitter:image" content={ seoImage?.url }>
+
+  <!-- Mastadon -->
+  <link rel="me" href={ SocialLinks.mastadon }>
+
+
+  <!-- json ld data -->  
+  <!-- website jsonld -->
+  <script type="application/ld+json" is:inline is:raw set:html={websiteJSONld}></script>
+
+  <!-- webpage jsonld -->
+  <script type="application/ld+json" is:inline is:raw set:html={webpageJSONld}></script>
+
+  <!-- project jsonld -->
+  <script type="application/ld+json" is:inline is:raw set:html={projectJSONld}></script>
+</>

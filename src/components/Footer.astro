@@ -1,0 +1,29 @@
+---
+
+import AppConfig from "@app/config";
+
+// Footer element
+---
+
+
+
+<footer>
+  &copy; {AppConfig.name} {new Date().getFullYear().toString() }. All rights reserved.
+
+  <br>
+  <br>
+  <div class="powered-by">
+    Powered by: <a href="http://astro.build" target="_blank" rel="noopener noreferrer">astro</a>
+  </div>
+</footer>
+
+
+<style lang="sass">
+  footer
+    text-align: center
+    color: #555555
+    font-size: .9em
+
+  .powered-by
+    font-size: .8em
+</style>
