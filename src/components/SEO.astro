@@ -76,9 +76,18 @@ const projectJSONld = `{
   <link rel="canonical" href={currentURL} />
 
   <!-- default -->
+  <title>{documentTitle}</title>
   <meta name="title" content={ documentTitle }>
   <meta name="description" content={ seoDesc }>
   <meta name="url" content={ currentURL }>
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content={ '@' + SocialUsernames.twitter }>
+  <meta name="twitter:site" content={ '@' + SocialUsernames.twitter }>
+  <meta name="twitter:title" content={ documentTitle }>
+  <meta name="twitter:description" content={ seoDesc }>
+  <meta name="twitter:image" content={ seoImage?.url }>
 
   <!-- OpenGraph -->
   <meta property="og:type" content="website" />
@@ -89,14 +98,6 @@ const projectJSONld = `{
   <meta name="og:url" content={ currentURL }>
   <meta name="og:site_name" content={ AppConfig.defaults.title }>
   <meta name="og:locale" content={ lang }>
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta name="twitter:creator" content={ '@' + SocialUsernames.twitter }>
-  <meta name="twitter:site" content={ '@' + SocialUsernames.twitter }>
-  <meta name="twitter:title" content={ documentTitle }>
-  <meta name="twitter:description" content={ seoDesc }>
-  <meta name="twitter:image" content={ seoImage?.url }>
 
   <!-- Mastadon -->
   <link rel="me" href={ SocialLinks.mastadon }>

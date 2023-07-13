@@ -15,7 +15,10 @@ User-agent: *
 
 Disallow: /.astro/
 Disallow: /favicon.png
+Disallow: /banner.png
 Disallow: /status.json
+Disallow: /manifest.json
+Disallow: /404.html
 Disallow: /.well-known/
 
 #####
@@ -24,6 +27,7 @@ Disallow: /.well-known/
 
 User-Agent: *
 Allow: /robots.txt$
+Allow: /sitemap.xml$
 
 
 #####

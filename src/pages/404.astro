@@ -1,0 +1,51 @@
+---
+// Error 404 Page
+
+import DefaultLayout from "@app/layout/Default.astro";
+// import AppConfig, { SocialLinks, SocialUsernames } from "@app/config";
+import errImg from "@app/asset/undraw_404.svg?raw";
+---
+
+
+<DefaultLayout pageTitle="Error 404 - Page not found" noIndex={true} seoDesc="PageNotFound Error">
+
+<div class="">
+  <div class="topImage" set:html={errImg} />
+  <h1>Page Not Found</h1>
+  <p>The Page you are looking for does'nt exist. Please check your URL.</p>
+
+  <a href="/">&larr; Go back Home</a>
+</div>
+
+</DefaultLayout>
+
+
+
+<style lang="sass" is:global >
+
+.topImage
+
+  svg
+    // border: 1px solid blue
+    max-width: 350px
+    width: 100%
+    height: auto
+
+
+</style>
+
+<style lang="sass">
+div
+  text-align: center
+  margin-top: 5rem
+  margin-bottom: 5rem
+p
+  margin: 3.5rem
+
+h1
+  font-size: 3.5em
+  margin-bottom: 1rem
+
+a
+  color: rgb(var(--accent)) !important
+</style>

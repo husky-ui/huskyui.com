@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from "@app/layout/Default.astro";
-import Card from "@app/component/Card.astro";
+// import Card from "@app/component/Card.astro";
 import AppConfig, { SocialLinks, SocialUsernames } from "@app/config";
 ---
 
@@ -12,12 +12,21 @@ import AppConfig, { SocialLinks, SocialUsernames } from "@app/config";
       <div class="">{ AppConfig.defaults.desc }</div>
     </div>
     <p class="note">
-      <strong>Note:</strong> This project is currently under active development, will be made public soon on <a target="_blank" href={SocialLinks.github}>GitHub</a>
+      Project is under development, follow us on 
+      <a target="_blank" href={SocialLinks.github}>GitHub</a>, 
+      <br>
+      <br>
+      for project updates follow us at
+      <strong>
+        <a target="_blank" href={SocialLinks.mastadon}>{ "@" + SocialUsernames.mastadon.username + "@" + SocialUsernames.mastadon.host }</a> 
+      </strong>
+      on fediverse or
+      <a target="_blank" href={SocialLinks.twitter}>{ "@" + SocialUsernames.twitter }</a> via twitter
     </p>
     <ul role="list" class="link-card-grid">
-      <Card href={ "" + SocialLinks.github } title="Project Home" body="Explore Source code and interact with huskyui community on GitHub" />
-      <Card href={ "https://docs." + AppConfig.site.hostname } title="Documentation" body="Get Started. Learn how HuskyUI works and explore the official API docs." />
-      <Card href={ "" + SocialLinks.mastadon } title="Project Updates" body={ "Follow @" + SocialUsernames.mastadon.username + "@" + SocialUsernames.mastadon.host + " for project updates" } />
+      <!-- <Card href={ "" + SocialLinks.github } title="Project Home" body="Explore Source code and interact with huskyui community on GitHub" /> -->
+      <!-- <Card href={ "https://docs." + AppConfig.site.hostname } title="Documentation" body="Get Started. Learn how HuskyUI works and explore the official API docs." /> -->
+      <!-- <Card href={ "" + SocialLinks.mastadon } title="Project Updates" body={ "Follow @" + SocialUsernames.mastadon.username + "@" + SocialUsernames.mastadon.host + " for project updates" } /> -->
     </ul>
   </main>
 </DefaultLayout>

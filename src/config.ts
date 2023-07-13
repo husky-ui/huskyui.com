@@ -63,9 +63,9 @@ export const AppConfig: AppConfig = {
   defaults: {
     title: "HuskyUI",
     desc: "An open-source design system by Acknology Co.",
-    seoImage: "/header.png",
+    seoImage: "https://huskyui.com/banner.png",
     seoImageAlt: "HuskyUI.com site header image",
-    lang: "en",
+    lang: "en-US",
   },
 }
 
