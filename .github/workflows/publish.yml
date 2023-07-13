@@ -5,10 +5,10 @@ on:
   # auto
   push:
     branches:
-      - "main"
+      - 'main'
     paths:
-      - "./src/**/*"
-      - "./static/**/*"
+      - "src/**/*"
+      - "static/**/*"
       - "astro.config.mjs"
       - "tsconfig.json"
       - "package.json"
